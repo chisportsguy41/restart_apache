@@ -31,7 +31,7 @@ do
             exit 1
 
         else
-            echo "ERROR $COMMAND is an invalid service command {restart|reload}"
+            echo "ERROR: $COMMAND is an invalid service command {restart|reload}"
             exit 1
         fi
     fi
