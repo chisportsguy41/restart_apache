@@ -40,5 +40,5 @@ done
 echo "ERROR: Invalid virtual-host name. Valid host names:"
 for FILENAME1 in $VHOSTS_PATH
 do
-    echo "$FILENAME1"
+    echo "${FILENAME1:29}"
 done
