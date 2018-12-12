@@ -2,6 +2,12 @@
 CONFIG="$1"
 COMMAND="$2"
 
+if [ $# -ne 2 ]
+then
+    echo "ERROR: $0 requires two parameters {virtual-host} {restart|reload}"
+    exit 1
+fi
+
 # only allow reload or restart
 if [ "$COMMAND" == "reload" ] || [ "$COMMAND" == "restart" ]
 then
