@@ -5,7 +5,7 @@ CONFIG2="/etc/apache2/sites-available/"
 
 if [ $# -ne 2 ]
 then
-    echo "ERROR: $0 requires two parameters {virtual-host} {restart|reload}"
+    echo -e "ERROR: $0 requires two parameters \nA virtual-host configuration \nA service command"
     exit 1
 fi
 
@@ -13,7 +13,7 @@ VHOSTS_PATH=/etc/apache2/sites-available/*.conf
 
 for FILENAME in $VHOSTS_PATH
 do 
-    if [ "$CONFIG2$CONFIG" == "$FILENAME" ]
+    if [ "$CONFIG2$CONFIG" == "$FILENAME" ] || [ "$CONFIG2$CONFIG.conf" == "$FILENAME" ]
     then 
         # only allow reload or restart
         if [ "$COMMAND" == "reload" ] || [ "$COMMAND" == "restart" ]
@@ -31,13 +31,13 @@ do
             exit 1
 
         else
-            echo "ERROR: $COMMAND is an invalid service command {restart|reload}"
+            echo -e "ERROR: $COMMAND is an invalid service command. \nValid service commands: \nrestart \nreload"
             exit 1
         fi
     fi
 done
 
-echo "ERROR: Invalid virtual-host name. Valid host names:"
+echo -e "ERROR: Invalid virtual-host name. \nValid host names:"
 for FILENAME1 in $VHOSTS_PATH
 do
     echo "${FILENAME1:29:-5}"
